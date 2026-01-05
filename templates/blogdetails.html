@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="contact">
+    <div class="inner">
+        <h2 class="major">{{ post['title'] }}</h2>
+		<p>{{ post['publishedTime'] | format_epoch_datetime }}</p>
+		<section>
+			{{ post['body'] | safe }}
+		</section>
+	</div>
+</section>
+{% endblock %}

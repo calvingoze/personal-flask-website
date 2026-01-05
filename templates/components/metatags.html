@@ -1,0 +1,22 @@
+        <meta name="title" content="{{ pageTitle }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ request.url }}" />
+        <meta property="og:title" content="{{ pageTitle }}" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="{{ request.url }}" />
+        <meta property="twitter:title" content="{{ pageTitle }}" />
+        {% if post %}
+        <meta name="description" content="{{ post['previewText'] }}" />
+        <meta property="twitter:description" content="{{ post['previewText'] }}" />
+        <meta property="og:description" content="{{ post['previewText'] }}" />
+        <meta property="twitter:image" content="{{ post['mainImageUrl'] }}" />
+        <meta property="og:image" content="{{ post['mainImageUrl'] }}" />
+        <meta name="keywords" content="{{ post['metaTags'] }}">
+        {% else %}
+        <meta name="description" content="Professional Engineer, Controls Automation Consulting, Software Developer." />
+        <meta property="twitter:description" content="Professional Engineer, Controls Automation Consulting, Software Developer." />
+        <meta property="og:description" content="Professional Engineer, Controls Automation Consulting, Software Developer." />
+        <meta property="twitter:image" content="{{ url_for('static', filename='img/pic01.jpg', _external=True) }}" />
+        <meta property="og:image" content="{{ url_for('static', filename='img/pic01.jpg', _external=True) }}" />
+        <meta name="keywords" content="engineering,controls,automation,manufacturing,consulting">
+        {% endif %}

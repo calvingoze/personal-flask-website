@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="www.sitemaps.org">
+  <url>
+    <loc>https://calvingoze.com/</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://calvingoze.com/contact</loc>
+    <lastmod>2026-02-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>1.0</priority>
+  </url>
+    <url>
+        <loc>https://calvingoze.com/blog</loc>
+        <lastmod>2026-02-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    {% for post in posts %}
+        <url>
+            <loc>https://calvingoze.com/blog/{{ post['url'] }}</loc>
+            <lastmod>{{ post['publishedTime'] | format_epoch_datetime('%Y-%m-%d') }}</lastmod>
+            <changefreq>yearly</changefreq>
+            <priority>0.8</priority>
+        </url>
+    {% endfor %}
+</urlset>

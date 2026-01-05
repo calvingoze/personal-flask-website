@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{{pageTitle}}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		{% include 'components/metatags.html' %}
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='css/noscript.css') }}" /></noscript>
+	</head>
+	<body class="is-preload {{ 'no-bg' if not hero == True else '' }}">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+                {% include 'components/header-nav.html' %}
+
+                {% block content %}{% endblock %}
+
+
+                <section id="footer">
+                    <div class="inner">
+                        <ul class="copyright">
+                            <li>&copy; Calvin Gozé All rights reserved.</li>
+                            <li><a href="{{ url_for('termsofuse') }}">Terms of Use</a></li>
+                            <li><a href="{{ url_for('privacy') }}">Privacy</a></li>
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+
+				
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/jquery.scrollex.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/util.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+	</body>
+</html>

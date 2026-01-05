@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="banner">
+	<div class="inner">
+		<div class="logo"><span class="icon solid fa-tools"></span></div>
+		<h2>Calvin Gozé, PE</h2>
+		<p>Competent. Commited.</p>
+	</div>
+</section>
+
+<!-- Wrapper -->
+<section id="wrapper">
+
+	<!-- One -->
+	<section id="one" class="wrapper spotlight style1">
+		<div class="inner">
+			<a href="#" class="image"><img src="{{ url_for('static', filename='img/pic01.jpg') }}" alt="" /></a>
+			<div class="content">
+				<h2 class="major">Software Developer. Automation Engineer.</h2>
+				<p>Hi, my name is John Calvin Gozé (pronounced go-zay). I'm an automation engineer and 
+					 software developer. I have a passion for invention, design, and learning all that I can.
+					  I strive to be a blessing to those around me with my lighthearted personality, eagerness
+					   to help out where needed, and desire to learn from others.</p>
+				<a href="{{ url_for('blog') }}" class="special">Read Blog</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Two -->
+	<section id="two" class="wrapper alt spotlight style2">
+		<div class="inner">
+			<a href="#" class="image"><img src="{{ url_for('static', filename='img/pic02.jpg') }}" alt="" /></a>
+			<div class="content">
+				<h2 class="major">Licensed Professional Engineer</h2>
+				<p>I am a liscenced Professional Engineer (PE) in the state of Minnesota. My discipline is Control Systems. License #65062.</p>
+				<a href="https://mn.gov/aelslagid/roster.html" target="_blank" rel="noopener noreferrer" class="special">Verify Liscence</a>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Three -->
+	<section id="three" class="wrapper style1">
+		<div class="inner">
+			<h2 class="major">Automation Controls Consulting</h2>
+			<p>I specialize in delivering tailored manufacturing automation and industrial control solutions designed to
+				 optimize production efficiency and reduce downtime. From PLC/Application programming and system integration to 
+				 full-scale process optimization, I help businesses modernize their operations with reliable, scalable
+				  technology.</p>
+			<section class="features">
+				<article>
+					<a href="#" class="image"><img src="{{ url_for('static', filename='img/pic05.jpg') }}" alt="" /></a>
+					<h3 class="major">Strong Software Understanding</h3>
+					<p>Object oriented programmer and database architect. Multiple years full stack .NET web development.
+						Proficient in languages like C#, Python, SQL, Javascript.
+					</p>
+				</article>
+				<article>
+					<a href="#" class="image"><img src="{{ url_for('static', filename='img/pic04.jpg') }}" alt="" /></a>
+					<h3 class="major">Advanced SCADA Integration</h3>
+					<p>Expirience designing and deploying SCADA solutions for manufacturing plants using Ignition and Kepware.
+					</p>
+				</article>
+				<article>
+					<a href="#" class="image"><img src="{{ url_for('static', filename='img/pic05.jpg') }}" alt="" /></a>
+					<h3 class="major">Controller Proficiency</h3>
+					<p>Expirience designing industrial solutions in the Allan Bradley and Beckhoff ecosystems.
+					</p>
+				</article>
+				<article>
+					<a href="#" class="image"><img src="{{ url_for('static', filename='img/pic05.jpg') }}" alt="" /></a>
+					<h3 class="major">Seamless Comm Connectors</h3>
+					<p>Strong software background and deep understanding of industrial protocols enables
+						advanced and seamless development of critcal data connectors.
+					</p>
+				</article>
+			</section>
+		</div>
+	</section>
+
+</section>
+{% endblock %}

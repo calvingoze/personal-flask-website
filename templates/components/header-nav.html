@@ -1,0 +1,20 @@
+<!-- Header -->
+    <header id="header" class="{{ 'alt' if home == True else '' }}">
+        <h1><a href="{{ url_for('home') }}">CALVIN GOZÉ</a></h1>
+        <nav>
+            <a href="#menu" class="button">Menu</a>
+        </nav>
+    </header>
+
+<!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>CALVINGOZÉ.COM</h2>
+            <ul class="links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+        </div>
+    </nav>

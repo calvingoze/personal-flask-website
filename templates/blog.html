@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<header>
+							<div class="inner">
+								<h2>Blog</h2>
+								<p>Projects and thoughts I share with the world.</p>
+							</div>
+						</header>
+
+						<!-- Content -->
+							<div class="wrapper">
+								<div class="inner">
+                                    <section class="features">
+                                        {% for post in posts %}
+                                            <article>
+                                                <a href="{{ url_for('blogdetails', blogposturl=post['url']) }}" class="image"><img src="{{ post['mainImageUrl'] }}" alt="" /></a>
+                                                <h3 class="major">{{ post['title'] }}</h3>
+                                                <p>{{ post['previewText'] }}</p>
+                                                <a href="{{ url_for('blogdetails', blogposturl=post['url']) }}" class="special">Read More</a>
+                                            </article>
+                                        {% endfor %}
+                                    </section>
+								</div>
+							</div>
+
+					</section>
+{% endblock %}
