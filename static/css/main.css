@@ -3424,4 +3424,60 @@ body.is-preload #banner p {
   }
 }
 
+/* Footer */
+#basic-content .inner {
+  padding: 5em 0 3em 0;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -moz-flex-direction: row;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -moz-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 55em;
+}
+#basic-content .inner > * {
+  width: 100%;
+}
+@media screen and (max-width: 1280px) {
+  #basic-content {
+    background-color: #5f0909;
+    background-size: auto, cover;
+    background-position: center, center;
+    margin-top: -6.5em;
+    padding-top: 6.5em;
+  }
+}
+@media screen and (max-width: 980px) {
+  #basic-content {
+    margin-top: -4.75em;
+    padding-top: 4.75em;
+  }
+  #basic-content .inner {
+    padding: 4em 3em 2em 3em;
+    display: block;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 736px) {
+  #basic-content {
+    margin-top: -2.5em;
+    padding-top: 2.5em;
+  }
+  #basic-content .inner {
+    padding: 4em 2em 2em 2em;
+  }
+}
+@media screen and (max-width: 360px) {
+  #basic-content .inner {
+    padding: 4em 1.5em 2em 1.5em;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */
