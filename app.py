@@ -13,7 +13,7 @@ import threading
 # enviorment variables (my special secrets)
 load_dotenv()
 DATABASE_PATH = os.getenv("DATABASE_PATH")
-PROXY_COUNT = os.getenv("PROXY_COUNT")
+PROXY_COUNT = int(os.getenv("PROXY_COUNT"))
 GMAIL_APP_PASSWRD = os.getenv("GMAIL_APP_PASSWRD")
 GMAIL_USERNAME = os.getenv("GMAIL_USERNAME")
 SPAM_LIMIT = os.getenv("SPAM_LIMIT")
@@ -94,6 +94,14 @@ def contact():
         return render_template("contact-postresponse.html", pageTitle='Contact | Calvin Gozé')
         
     return render_template("contact.html", pageTitle='Contact | Calvin Gozé')
+
+# Analytics manager
+@app.after_request
+def track_visitor(response):
+    # We ignore static files (images, css) to keep the data clean
+    if request.endpoint and not request.path.startswith('/static'):
+        siteData.logPageVisit(request.path)
+    return response
 
 # routes for crawlers
 @app.route('/sitemap.xml')

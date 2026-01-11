@@ -1,10 +1,11 @@
         <meta name="title" content="{{ pageTitle }}" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="{{ request.url }}" />
         <meta property="og:title" content="{{ pageTitle }}" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="{{ request.url }}" />
         <meta property="twitter:title" content="{{ pageTitle }}" />
+        <meta property="twitter:url" content="https://calvingoze.com{{ request.path }}" />
+        <meta property="og:url" content="https://calvingoze.com{{ request.path }}" />
+        <link rel="canonical" href="https://calvingoze.com{{ request.path }}" />
         {% if post %}
         <meta name="description" content="{{ post['previewText'] }}" />
         <meta property="twitter:description" content="{{ post['previewText'] }}" />
