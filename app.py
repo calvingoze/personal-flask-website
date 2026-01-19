@@ -123,7 +123,7 @@ def ratelimit_handler(e):
     return render_template('errorpages/429.html',pageTitle='Spam Detected'), 429
 
 @app.errorhandler(404)
-def page_not_found(error):
+def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('errorpages/404.html',pageTitle='404 Page Not Found'), 404
 
@@ -132,7 +132,7 @@ def page_not_found(error):
 def format_datetime_filter(value, format='%b %d, %Y'):
     if value is None:
         return ""
-    timeStamp = datetime.fromtimestamp(value)
+    timeStamp = datetime.fromisoformat(value)
     return timeStamp.strftime(format)
 
 if __name__ == '__main__':

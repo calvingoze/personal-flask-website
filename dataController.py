@@ -31,11 +31,13 @@ class DataController:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 title TEXT,
                 body TEXT,
-                url TEXT NOT NULL UNIQUE,
+                url TEXT UNIQUE,
                 previewText TEXT,
                 mainImageUrl TEXT,
+                mainImageAlt TEXT,
                 metaTags TEXT,
-                publishedTime INTEGER
+                publishedTime TEXT,
+                active INTEGER
             )
         ''')
         cursor.execute('''
@@ -59,8 +61,16 @@ class DataController:
         ''')
         conn.commit()
         cursor.execute('''
-            CREATE INDEX IF NOT EXISTS idx_report_today 
+            CREATE INDEX IF NOT EXISTS idx_pagevisits_report_today 
             ON pagevisits (date, hits DESC);
+        ''')
+        cursor.execute('''
+            CREATE INDEX IF NOT EXISTS idx_blogpost_publishedTime 
+            ON blogpost (publishedTime DESC);
+        ''')
+        cursor.execute('''
+            CREATE INDEX IF NOT EXISTS idx_contactMessage_time 
+            ON contactMessage (time DESC);
         ''')
         conn.commit()
         conn.close()
@@ -71,7 +81,7 @@ class DataController:
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
         
-        cursor.execute(f"SELECT * FROM blogpost ORDER BY publishedTime DESC")
+        cursor.execute(f"SELECT * FROM blogpost WHERE active = true ORDER BY publishedTime DESC")
         rows = cursor.fetchall()
         
         posts = [dict(row) for row in rows]
