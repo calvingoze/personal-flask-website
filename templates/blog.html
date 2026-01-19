@@ -15,8 +15,9 @@
                                     <section class="features">
                                         {% for post in posts %}
                                             <article>
-                                                <a href="{{ url_for('blogdetails', blogposturl=post['url']) }}" class="image"><img src="{{ post['mainImageUrl'] }}" alt="" /></a>
-                                                <h3 class="major">{{ post['title'] }}</h3>
+                                                <a href="{{ url_for('blogdetails', blogposturl=post['url']) }}" class="image"><img src="{{ post['mainImageUrl'] }}" alt="{{ post['mainImageAlt'] }}" /></a>
+                                                <sup>{{ post['publishedTime'] | format_epoch_datetime }}</sup>
+												<h3 class="major">{{ post['title'] }}</h3>
                                                 <p>{{ post['previewText'] }}</p>
                                                 <a href="{{ url_for('blogdetails', blogposturl=post['url']) }}" class="special">Read More</a>
                                             </article>

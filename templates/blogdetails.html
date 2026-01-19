@@ -3,7 +3,7 @@
 <section id="basic-content">
     <div class="inner">
         <h2 class="major">{{ post['title'] }}</h2>
-		<p>{{ post['publishedTime'] | format_epoch_datetime }}</p>
+		<p><i>{{ post['publishedTime'] | format_epoch_datetime }}</i></p>
 		<section>
 			{{ post['body'] | safe }}
 		</section>
