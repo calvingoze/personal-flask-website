@@ -6,6 +6,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from user_agents import parse
 from datetime import datetime
 from dataController import DataController
+from analyticsController import AnalyticsController
 from dotenv import load_dotenv
 import os
 import threading
@@ -13,18 +14,21 @@ import threading
 # enviorment variables (my special secrets)
 load_dotenv()
 DATABASE_PATH = os.getenv("DATABASE_PATH")
+ANALYTICS_DB_PATH = os.getenv("ANALYTICS_DB_PATH")
 PROXY_COUNT = int(os.getenv("PROXY_COUNT"))
 GMAIL_APP_PASSWRD = os.getenv("GMAIL_APP_PASSWRD")
 GMAIL_USERNAME = os.getenv("GMAIL_USERNAME")
 SPAM_LIMIT = os.getenv("SPAM_LIMIT")
+REDIS_HOST = os.getenv("REDIS_HOST")
+REDIS_PORT = int(os.getenv("REDIS_PORT"))
 
 # app configuration and modules
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(
     app.wsgi_app, 
     x_for=PROXY_COUNT,
-    x_proto=PROXY_COUNT,
-    x_host=PROXY_COUNT
+    x_proto=1,
+    x_host=1
 )
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
@@ -32,8 +36,9 @@ app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = GMAIL_USERNAME
 app.config['MAIL_PASSWORD'] = GMAIL_APP_PASSWRD
 mail = Mail(app)
-limiter = Limiter(get_remote_address, app=app)
+limiter = Limiter(get_remote_address, app=app, storage_uri=f"redis://{REDIS_HOST}:{REDIS_PORT}")
 siteData = DataController(DATABASE_PATH)
+siteAnalytics = AnalyticsController(ANALYTICS_DB_PATH, REDIS_HOST, REDIS_PORT)
 
 # main routes
 @app.route('/')
@@ -45,7 +50,7 @@ def blogdetails(blogposturl):
     blogPost = siteData.getBlogPost(blogposturl)
     if not blogPost:
         abort(404)
-    return render_template("blogdetails.html", post=blogPost, pageTitle='{} | Blog | Calvin Gozé'.format(blogPost['title']))
+    return render_template("blogdetails.html", post=blogPost, pageTitle=f'{blogPost['title']} | Blog | Calvin Gozé')
 
 @app.route('/blog')
 def blog():
@@ -88,7 +93,7 @@ def contact():
                     body=f"From: {name} <{email}>\n\n{message}")
             mail.send(msg)
 
-        t1 = threading.Thread(target=sendEmail, args=(name,email,message,))
+        t1 = threading.Thread(target=sendEmail, args=(name,email,message,), daemon=True)
         t1.start()
         
         return render_template("contact-postresponse.html", pageTitle='Contact | Calvin Gozé')
@@ -100,7 +105,7 @@ def contact():
 def track_visitor(response):
     # We ignore static files (images, css) to keep the data clean
     if request.endpoint and not request.path.startswith('/static'):
-        siteData.logPageVisit(request.path)
+        siteAnalytics.logPageVisit(request.path)
     return response
 
 # routes for crawlers
