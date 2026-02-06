@@ -1,4 +1,4 @@
-from flask import Flask, render_template, make_response, Response, abort, request, copy_current_request_context
+from flask import Flask, render_template, make_response, abort, request, copy_current_request_context
 from flask_mail import Mail, Message
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -119,8 +119,10 @@ def sitemap():
 
 @app.route('/robots.txt')
 def robots_txt():
-    content = "User-agent: *\nDisallow: /admin/\n\nSitemap: https://calvingoze.com/sitemap.xml"
-    return Response(content, mimetype='text/plain')
+    txtContent = render_template("crawlers/robots.txt")
+    response = make_response(txtContent)
+    response.headers['Content-Type'] = 'text/plain'
+    return response
 
 # error handlers
 @app.errorhandler(429)
