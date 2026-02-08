@@ -1937,6 +1937,7 @@ input[type=radio] + label:before {
 .image img {
   border-radius: 5px;
   display: block;
+  max-width: 100%;
 }
 .image.left, .image.right {
   max-width: 40%;
